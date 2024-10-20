@@ -1,3 +1,24 @@
+<mat-card appearance="outlined">
+  <table class="user-table">
+    <tr>
+      <th>Name</th>
+      <th>E-mail</th>
+      <th>Birth Date</th>
+      <th>City</th>
+      <th>Street</th>
+      <th>Zip Code</th>
+    </tr>
+    <tr *ngFor="let user of allUsers" routerLink="/user/{{ user['id'] }}">
+      <td>{{ user.firstName }} {{ user.lastName }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.birthDate }}</td>
+      <td>{{ user.city }}</td>
+      <td>{{ user.street }}</td>
+      <td>{{ user.zipCode }}</td>
+    </tr>
+  </table>
+</mat-card>
+
 <button
   (click)="openDialog()"
   class="add-user-btn"
