@@ -21,7 +21,7 @@ import { RouterLink } from '@angular/router';
     MatDialogModule,
     DialogAddUserComponent,
     MatCardModule,
-    RouterLink
+    RouterLink,
   ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
@@ -34,23 +34,15 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     const usersCollection = collection(this.firestore, 'users');
-    collectionData(usersCollection, { idField: 'id' }).subscribe((changes: any) => {
-      console.log('received changes', changes);
-
-      changes.forEach((user: any) => {
-        user.birthDate = this.formatDate(user.birthDate); // Zeitstempel in Datum umwandeln
-      });
-      
-      this.allUsers = changes;
-    });
+    collectionData(usersCollection, { idField: 'id' }).subscribe(
+      (changes: any) => {
+        console.log('received changes', changes);
+        this.allUsers = changes;
+      }
+    );
   }
 
   openDialog() {
     this.dialog.open(DialogAddUserComponent);
-  }
-
-  formatDate(timestamp: any): string {
-    const date = new Date(timestamp);
-    return date.toLocaleDateString(); // Du kannst das Format hier anpassen, falls nötig
   }
 }

@@ -11,7 +11,7 @@
     <tr *ngFor="let user of allUsers" routerLink="/user/{{ user['id'] }}">
       <td>{{ user.firstName }} {{ user.lastName }}</td>
       <td>{{ user.email }}</td>
-      <td>{{ user.birthDate }}</td>
+      <td>{{ user.birthDate | date: 'dd.MM.yyyy' }}</td>
       <td>{{ user.city }}</td>
       <td>{{ user.street }}</td>
       <td>{{ user.zipCode }}</td>
